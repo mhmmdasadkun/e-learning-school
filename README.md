@@ -1,2 +1,2 @@
-# simple-e-learning
-E-Learning sederhana dengan Codeigniter 3
+# e-learning-school
+E-Learning sederhana for school - Codeigniter 3
