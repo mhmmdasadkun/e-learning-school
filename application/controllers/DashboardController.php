@@ -9,6 +9,7 @@ class DashboardController extends CI_Controller
 			redirect($this->config->item('routes')['login']);
 		}
 	}
+
 	public function index()
 	{
 		$data['title'] = "Dashboard";
@@ -16,6 +17,5 @@ class DashboardController extends CI_Controller
 
 		$this->load->view('layouts/header', $data);
 		$this->load->view('dashboard');
-		$this->load->view('layouts/footer');
 	}
 }

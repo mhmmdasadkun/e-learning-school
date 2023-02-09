@@ -55,8 +55,16 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Routes Auth
 $route[$this->config->item('routes')['login']]['GET'] = 'AuthController/index';
-$route[$this->config->item('routes')['authenticate']]['POST'] = 'AuthController/index';
+$route[$this->config->item('routes')['authenticate']]['POST'] = 'AuthController/authenticate';
 $route[$this->config->item('routes')['logout']]['GET'] = 'AuthController/logout';
 
 // Routes Dashboard
 $route[$this->config->item('routes')['dashboard']]['GET'] = 'DashboardController/index';
+
+// Routes Siswa
+$route[$this->config->item('routes')['siswa-list']]['GET'] = 'SiswaController/index';
+$route[$this->config->item('routes')['siswa-data']]['POST'] = 'SiswaController/siswaList';
+$route[$this->config->item('routes')['siswa-create']]['POST'] = 'SiswaController/create';
+$route['siswa/edit/(:num)']['GET'] = 'SiswaController/edit/$1';
+$route[$this->config->item('routes')['siswa-update']]['POST'] = 'SiswaController/update';
+$route['siswa/delete/(:num)']['POST'] = 'SiswaController/delete/$1';

@@ -10,8 +10,13 @@ class AuthController extends CI_Controller
 
     public function index()
     {
-        $this->form_validation->set_rules('ad_email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('ad_password', 'Password', 'required');
+        return $this->load->view('auth/login');
+    }
+
+    public function authenticate()
+    {
+        $this->form_validation->set_rules('ad_email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('ad_password', 'Password', 'required|trim');
 
         if ($this->form_validation->run()) {
             $ad_email = $this->input->post('ad_email');
@@ -26,12 +31,13 @@ class AuthController extends CI_Controller
                     'isLogin' => true
                 ]);
 
-                return redirect($this->config->item('routes')['dashboard']);
+                echo json_encode(['success' => true, 'code' => 200]);
+            } else {
+                echo json_encode(['success' => false, 'msg' => 'Akun tidak terdaftar!', 'code' => 404]);
             }
-            return redirect($this->config->item('routes')['login']);
+        } else {
+            echo json_encode(['err' => $this->form_validation->error_array(), 'code' => 400]);
         }
-
-        $this->load->view('auth/login');
     }
 
     public function logout()

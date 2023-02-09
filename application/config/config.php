@@ -387,7 +387,8 @@ $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+// $config['sess_save_path'] = NULL;
+$config['sess_save_path'] = APPPATH . 'cache/session/';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
@@ -540,3 +541,11 @@ $config['routes']['logout'] = 'logout';
 
 // Routes Dashboard 
 $config['routes']['dashboard'] = 'dashboard';
+
+// Routes Siswa
+$config['routes']['siswa-list'] = 'siswa';
+$config['routes']['siswa-data'] = 'siswa-data';
+$config['routes']['siswa-create'] = 'siswa-create';
+$config['routes']['siswa-edit'] = 'siswa-edit';
+$config['routes']['siswa-update'] = 'siswa-update';
+$config['routes']['siswa-delete'] = 'siswa-delete';
