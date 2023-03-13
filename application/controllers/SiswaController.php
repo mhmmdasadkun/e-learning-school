@@ -21,7 +21,7 @@ class SiswaController extends CI_Controller
 
     public function siswaList()
     {
-        $list = $this->datatables->getDatatables();
+        $list = $this->siswa->getDatatables();
         $data = [];
         $no = $this->input->post('start');
 
@@ -41,8 +41,8 @@ class SiswaController extends CI_Controller
 
         $output = [
             "draw" => $this->input->post('draw'),
-            "recordsTotal" => $this->datatables->countAll(),
-            "recordsFiltered" => $this->datatables->countFiltered(),
+            "recordsTotal" => $this->siswa->countAll(),
+            "recordsFiltered" => $this->siswa->countFiltered(),
             "data" => $data
         ];
         //output to json format

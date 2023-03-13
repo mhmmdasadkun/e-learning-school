@@ -59,7 +59,9 @@
             </div>
             <div class="modal-body">
                 <form id="form">
-                    <input type="hidden" name="id" id="id">
+                    <div>
+                        <input type="hidden" name="id" id="id">
+                    </div>
                     <div class="mb-3">
                         <label for="sw_nama" class="form-label">Nama Lengkap</label>
                         <input type="text" name="sw_nama" class="form-control" id="sw_nama" placeholder="Masukan nama lengkap">
@@ -157,17 +159,16 @@
         $(this).next().empty();
     });
 
-
     $("#handleAdd").on("click", function() {
         method = "add";
         $("#form")[0].reset();
         $("#siswaModal").modal('show');
         $("#siswaModalLabel").text("Tambah Siswa");
 
-        // $("input").removeClass('is-invalid');
-        // $("input").next().empty();
-        // $("select").removeClass('is-invalid');
-        // $("select").next().empty();
+        $("input").removeClass('is-invalid');
+        $("input").next().empty();
+        $("select").removeClass('is-invalid');
+        $("select").next().empty();
     });
 
     function edit(id) {
@@ -176,10 +177,10 @@
         $("#siswaModal").modal('show');
         $("#siswaModalLabel").text("Ubah Siswa");
 
-        // $("input").removeClass('is-invalid');
-        // $("input").next().empty();  
-        // $("select").removeClass('is-invalid');
-        // $("select").next().empty();
+        $("input").removeClass('is-invalid');
+        $("input").next().empty();
+        $("select").removeClass('is-invalid');
+        $("select").next().empty();
 
         $.ajax({
             url: '<?= site_url('siswa/edit/'); ?>' + id,
@@ -212,6 +213,11 @@
                     //if success reload ajax table
                     $("#siswaModal").modal('hide');
                     siswaTable.ajax.reload(null, false);
+
+                    toastr.options = {
+                        "preventDuplicates": true
+                    }
+                    toastr.danger(res.msg);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert('Error delete data from ajax');
@@ -237,11 +243,11 @@
                 if (res.code == 200) {
                     $("#handleSubmit").attr('disabled', false);
                     $("#siswaModal").modal('hide');
-                    siswaTable.ajax.reload(null, false);
                     toastr.options = {
                         "preventDuplicates": true
                     }
-                    toastr.error(res.msg); //reload datatable ajax 
+                    toastr.success(res.msg);
+                    siswaTable.ajax.reload(null, false);
                 } else {
                     let response = res.err;
                     for (let error in response) {
